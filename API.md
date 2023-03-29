@@ -19,8 +19,8 @@ Name|Description
 
 
 
-__Implements__: [IConstruct](#constructs-iconstruct), [IConstruct](#aws-cdk-core-iconstruct), [IConstruct](#constructs-iconstruct), [IDependable](#aws-cdk-core-idependable)
-__Extends__: [Construct](#aws-cdk-core-construct)
+__Implements__: [IConstruct](#constructs-iconstruct), [IDependable](#constructs-idependable)
+__Extends__: [Construct](#constructs-construct)
 
 ### Initializer
 
@@ -31,15 +31,15 @@ __Extends__: [Construct](#aws-cdk-core-construct)
 new BucketDeploymentExpirator(scope: Construct, id: string, props: BucketDeploymentExpiratorProps)
 ```
 
-* **scope** (<code>[Construct](#aws-cdk-core-construct)</code>)  *No description*
+* **scope** (<code>[Construct](#constructs-construct)</code>)  *No description*
 * **id** (<code>string</code>)  *No description*
 * **props** (<code>[BucketDeploymentExpiratorProps](#cdk-bucket-deployment-expirator-bucketdeploymentexpiratorprops)</code>)  *No description*
-  * **bucketDeployment** (<code>[BucketDeployment](#aws-cdk-aws-s3-deployment-bucketdeployment)</code>)  The CDK Bucket Deployment Construct. 
-  * **sourceBucket** (<code>[IBucket](#aws-cdk-aws-s3-ibucket)</code>)  The S3 bucket to remove old deployments from. 
+  * **bucketDeployment** (<code>[aws_s3_deployment.BucketDeployment](#aws-cdk-lib-aws-s3-deployment-bucketdeployment)</code>)  The CDK Bucket Deployment Construct. 
+  * **sourceBucket** (<code>[aws_s3.IBucket](#aws-cdk-lib-aws-s3-ibucket)</code>)  The S3 bucket to remove old deployments from. 
   * **deploymentsToKeep** (<code>number</code>)  The number of old deployments to keep. __*Default*__: 3
   * **metaLookupKey** (<code>string</code>)  The S3 metadata key to look for as a timestamp. __*Default*__: "deployed"
   * **removeUnmarked** (<code>boolean</code>)  Whether or not to remove items without a metadata key. __*Default*__: false
-  * **role** (<code>[IRole](#aws-cdk-aws-iam-irole)</code>)  Execution role associated with this function. __*Default*__: A role is automatically created
+  * **role** (<code>[aws_iam.IRole](#aws-cdk-lib-aws-iam-irole)</code>)  Execution role associated with this function. __*Default*__: A role is automatically created
 
 
 
@@ -53,12 +53,12 @@ new BucketDeploymentExpirator(scope: Construct, id: string, props: BucketDeploym
 
 Name | Type | Description 
 -----|------|-------------
-**bucketDeployment** | <code>[BucketDeployment](#aws-cdk-aws-s3-deployment-bucketdeployment)</code> | The CDK Bucket Deployment Construct.
-**sourceBucket** | <code>[IBucket](#aws-cdk-aws-s3-ibucket)</code> | The S3 bucket to remove old deployments from.
+**bucketDeployment** | <code>[aws_s3_deployment.BucketDeployment](#aws-cdk-lib-aws-s3-deployment-bucketdeployment)</code> | The CDK Bucket Deployment Construct.
+**sourceBucket** | <code>[aws_s3.IBucket](#aws-cdk-lib-aws-s3-ibucket)</code> | The S3 bucket to remove old deployments from.
 **deploymentsToKeep**? | <code>number</code> | The number of old deployments to keep.<br/>__*Default*__: 3
 **metaLookupKey**? | <code>string</code> | The S3 metadata key to look for as a timestamp.<br/>__*Default*__: "deployed"
 **removeUnmarked**? | <code>boolean</code> | Whether or not to remove items without a metadata key.<br/>__*Default*__: false
-**role**? | <code>[IRole](#aws-cdk-aws-iam-irole)</code> | Execution role associated with this function.<br/>__*Default*__: A role is automatically created
+**role**? | <code>[aws_iam.IRole](#aws-cdk-lib-aws-iam-irole)</code> | Execution role associated with this function.<br/>__*Default*__: A role is automatically created
 
 
 

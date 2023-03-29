@@ -1,11 +1,12 @@
 import * as crypto from 'crypto';
 import * as fs from 'fs';
 import * as path from 'path';
-import { IRole } from '@aws-cdk/aws-iam';
-import { Code, Runtime, SingletonFunction } from '@aws-cdk/aws-lambda';
-import { IBucket } from '@aws-cdk/aws-s3';
-import { BucketDeployment } from '@aws-cdk/aws-s3-deployment';
-import { Construct, Duration, CustomResource } from '@aws-cdk/core';
+import { IRole } from 'aws-cdk-lib/aws-iam';
+import { Code, Runtime, SingletonFunction } from 'aws-cdk-lib/aws-lambda';
+import { IBucket } from 'aws-cdk-lib/aws-s3';
+import { BucketDeployment } from 'aws-cdk-lib/aws-s3-deployment';
+import { Duration, CustomResource } from 'aws-cdk-lib/core';
+import { Construct } from 'constructs';
 
 const handlerCodeBundle = path.join(__dirname, '..', '.build');
 const handlerSourceDirectory = path.join(__dirname, '..', 'lambda', 'src');
@@ -57,7 +58,7 @@ export class BucketDeploymentExpirator extends Construct {
     const handler = new SingletonFunction(this, 'CustomResourceHandler', {
       uuid: this.renderSingletonUuid(),
       code: Code.fromAsset(handlerCodeBundle, { assetHash }),
-      runtime: Runtime.NODEJS_12_X,
+      runtime: Runtime.NODEJS_18_X,
       handler: 'index.handler',
       lambdaPurpose: 'Custom::CDKBucketDeploymentExpirator',
       timeout: Duration.minutes(15),

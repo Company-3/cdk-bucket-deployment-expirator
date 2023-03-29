@@ -1,6 +1,6 @@
-const { AwsCdkConstructLibrary } = require('projen');
+const { awscdk } = require('projen');
 
-const project = new AwsCdkConstructLibrary({
+const project = new awscdk.AwsCdkConstructLibrary({
   authorAddress: 'kcswinner@gmail.com',
   authorName: 'Ken Winner',
   name: 'cdk-bucket-deployment-expirator',
@@ -17,18 +17,7 @@ const project = new AwsCdkConstructLibrary({
     ],
   },
 
-  cdkVersion: '1.87.1',
-  cdkDependencies: [
-    '@aws-cdk/aws-iam',
-    '@aws-cdk/aws-lambda',
-    '@aws-cdk/aws-lambda-nodejs',
-    '@aws-cdk/aws-s3',
-    '@aws-cdk/aws-s3-deployment',
-    '@aws-cdk/core',
-  ],
-  peerDeps: [
-    'constructs',
-  ],
+  cdkVersion: '2.68.0',
   devDeps: [
     'aws-sdk',
     'aws-sdk-mock',
@@ -38,6 +27,7 @@ const project = new AwsCdkConstructLibrary({
 
   gitignore: [
     '.build',
+    '.venv',
   ],
 
   python: {
@@ -50,12 +40,8 @@ project.addTask('clean', {
   exec: 'rm -rf .build',
 });
 
-project.addTask('build:lambda', {
-  exec: 'yarn run clean && esbuild lambda/src/index.ts --bundle --outdir=.build/ --target=node12 --platform=node',
-});
-
-project.addTask('test', {
-  exec: 'yarn run build:lambda && jest --passWithNoTests --updateSnapshot && yarn run eslint',
-});
+project.projectBuild.preCompileTask.exec(
+  'yarn run clean && esbuild lambda/src/index.ts --bundle --outdir=.build/ --target=node18 --platform=node',
+);
 
 project.synth();

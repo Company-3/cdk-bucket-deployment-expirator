@@ -1,10 +1,10 @@
-import '@aws-cdk/assert/jest';
-import { Bucket } from '@aws-cdk/aws-s3';
-import { BucketDeployment, Source } from '@aws-cdk/aws-s3-deployment';
-import { Stack } from '@aws-cdk/core';
-import * as AWS from 'aws-sdk';
-import * as AWSMock from 'aws-sdk-mock';
-import * as nock from 'nock';
+import { Template } from 'aws-cdk-lib/assertions';
+import { Bucket } from 'aws-cdk-lib/aws-s3';
+import { BucketDeployment, Source } from 'aws-cdk-lib/aws-s3-deployment';
+import { Stack } from 'aws-cdk-lib/core';
+import AWS from 'aws-sdk';
+import AWSMock from 'aws-sdk-mock';
+import nock from 'nock';
 import { handler } from '../lambda/src';
 import { BucketDeploymentExpirator } from '../src';
 
@@ -83,12 +83,14 @@ test('Stack Resources', () => {
   });
 
   // THEN
-  expect(stack).toHaveResource('Custom::CDKBucketDeploymentExpirator', {
-    ServiceToken: {
-      'Fn::GetAtt': [
-        'CustomCDKBucketDeploymentExpirator7EE36E3418604B22AC9E149ABDEB886C762ED068',
-        'Arn',
-      ],
+  Template.fromStack(stack).hasResource('Custom::CDKBucketDeploymentExpirator', {
+    Properties: {
+      ServiceToken: {
+        'Fn::GetAtt': [
+          'CustomCDKBucketDeploymentExpirator7EE36E3418604B22AC9E149ABDEB886C762ED068',
+          'Arn',
+        ],
+      },
     },
   });
 });
