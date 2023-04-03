@@ -1,11 +1,11 @@
 import * as crypto from 'crypto';
 import * as fs from 'fs';
 import * as path from 'path';
+import { Duration, CustomResource } from 'aws-cdk-lib';
 import { IRole } from 'aws-cdk-lib/aws-iam';
 import { Code, Runtime, SingletonFunction } from 'aws-cdk-lib/aws-lambda';
 import { IBucket } from 'aws-cdk-lib/aws-s3';
 import { BucketDeployment } from 'aws-cdk-lib/aws-s3-deployment';
-import { Duration, CustomResource } from 'aws-cdk-lib/core';
 import { Construct } from 'constructs';
 
 const handlerCodeBundle = path.join(__dirname, '..', '.build');
