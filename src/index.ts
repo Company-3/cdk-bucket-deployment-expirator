@@ -79,7 +79,7 @@ export class BucketDeploymentExpirator extends Construct {
         MetaLookupKey: props.metaLookupKey ?? defaultMetaKey,
         DeploymentsToKeep: props.deploymentsToKeep ?? 3,
         RemoveUnmarked: props.removeUnmarked ?? false,
-        Timestamp: new Date().getTime(), // Is there a better way to force the resource to update?
+        SourceHash: assetHash,
       },
     });
 
