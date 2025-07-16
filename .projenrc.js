@@ -18,6 +18,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   },
 
   cdkVersion: '2.180.0',
+  jsiiVersion: '~5.8.0',
   devDeps: [
     'aws-sdk',
     'aws-sdk-mock',
@@ -28,6 +29,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
   gitignore: [
     '.build',
     '.venv',
+    '.idea',
   ],
 
   python: {
