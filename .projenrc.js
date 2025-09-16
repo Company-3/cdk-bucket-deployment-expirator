@@ -11,12 +11,8 @@ const project = new awscdk.AwsCdkConstructLibrary({
   },
   defaultReleaseBranch: 'main',
   codeCov: true,
-  dependabotOptions: {
-    ignore: [
-      { dependencyName: '@aws-cdk*' },
-    ],
-  },
-
+  depsUpgrade: false,
+  dependabot: false,
   cdkVersion: '2.180.0',
   jsiiVersion: '~5.8.0',
   devDeps: [
