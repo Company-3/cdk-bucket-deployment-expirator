@@ -27,6 +27,7 @@ const project = new awscdk.AwsCdkConstructLibrary({
     '.venv',
     '.idea',
   ],
+  license: 'Apache-2.0',
   releaseToNpm: false,
   publishToPypi: {
     distName: 'cdk-bucket-deployment-expirator',
