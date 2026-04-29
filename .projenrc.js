@@ -1,4 +1,5 @@
 const { awscdk } = require('projen');
+const { CodeArtifactAuthProvider } = require('projen/lib/release');
 
 const project = new awscdk.AwsCdkConstructLibrary({
   authorAddress: 'kcswinner@gmail.com',
@@ -13,24 +14,28 @@ const project = new awscdk.AwsCdkConstructLibrary({
   codeCov: true,
   depsUpgrade: false,
   dependabot: false,
-  cdkVersion: '2.180.0',
-  jsiiVersion: '~5.8.0',
+  cdkVersion: '2.232.1',
+  jsiiVersion: '~5.9.0',
   devDeps: [
     'aws-sdk',
     'aws-sdk-mock',
     'esbuild',
     'nock',
   ],
-
   gitignore: [
     '.build',
     '.venv',
     '.idea',
   ],
-
-  python: {
+  releaseToNpm: false,
+  publishToPypi: {
     distName: 'cdk-bucket-deployment-expirator',
     module: 'cdk_bucket_deployment_expirator',
+    twineRegistryUrl: 'https://co3infra-697184679576.d.codeartifact.us-east-1.amazonaws.com/pypi/co3-python-tools/',
+    codeArtifactOptions: {
+      authProvider: CodeArtifactAuthProvider.GITHUB_OIDC,
+      roleToAssume: '${{ secrets.ARTIFACT_ROLE }}',
+    },
   },
 });
 

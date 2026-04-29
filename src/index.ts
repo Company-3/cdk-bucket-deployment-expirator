@@ -58,7 +58,7 @@ export class BucketDeploymentExpirator extends Construct {
     const handler = new SingletonFunction(this, 'CustomResourceHandler', {
       uuid: this.renderSingletonUuid(),
       code: Code.fromAsset(handlerCodeBundle, { assetHash }),
-      runtime: Runtime.NODEJS_18_X,
+      runtime: Runtime.NODEJS_22_X,
       handler: 'index.handler',
       lambdaPurpose: 'Custom::CDKBucketDeploymentExpirator',
       timeout: Duration.minutes(15),
